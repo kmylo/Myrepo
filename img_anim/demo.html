@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Super Batman</title>
+  <!-- Bootstrap core CSS -->
+  <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap theme -->
+  <link href="node_modules/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+  <link href="node_modules/bootstrap-slider/css/bootstrap-slider.css" rel="stylesheet">
+  <style>
+    #RGB {
+     /* height: 20px;*/
+      background: rgb(128, 128, 128);
+    }
+
+.rejilla{
+      position: absolute;
+    left: -30px;
+    top: 0;
+}
+  </style>
+}
+</head>
+
+<body role="document">
+
+
+  <div class="container theme-showcase" role="main">
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <h2>Ejemplo Animación</h2>
+      <p>
+       Mover el Deslizador para el ejemplo de animación en papel (este caso web)
+      </p>
+    </div>
+    <div class="row">
+    <div class="img-anim" style="position: relative;" id="RGB">
+      <img src="tapaanimada-web.png" alt="void">
+      <img src="rejilla.png" alt="void" id="rejilla" class="rejilla">
+    </div>
+
+    </div>
+    <div class="row">
+    
+      <div class="col-sm-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Deslizador IMG</h3>
+          </div>
+          <div class="panel-body">
+          <input id="ex1" data-slider-id="ex1Slider" type="text" data-slider-min="0" data-slider-max="400" data-slider-step="1" data-slider-value="14" ></div>
+        </div>
+        
+      </div>
+ </div>
+
+
+  </div>
+  <!-- /container -->
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="node_modules/bootstrap-slider/js/bootstrap-slider.js"></script>
+
+<script>
+    $(document).ready(function() {
+        /* Example 1 */
+        $('#ex1').slider(
+                  {
+            formatter: function(value) {
+                return 'Current value: ' + value;
+                     
+            }
+        });
+
+       /* $("#ex1").slider({ min: 0, max: 200});*/
+
+        var RGBChange = function() {
+          $('#RGB').css('background', 'rgb('+r.getValue()+','+r.getValue()+','+r.getValue()+')')
+        };
+         var ANIChange = function()
+        {
+         $('#rejilla').attr('style', 'left: '+an.getValue()+'px');
+       }
+
+     
+        var r = $('#ex1').slider()
+        .on('slide', RGBChange)
+        .data('slider');
+
+        var an = $('#ex1').slider()
+        .on('slide', ANIChange)
+        .data('slider');
+
+    });
+    </script>
+</body>
+
+</html>
