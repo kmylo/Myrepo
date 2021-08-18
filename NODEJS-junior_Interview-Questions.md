@@ -21,13 +21,13 @@
 
 | No |  Questions   |
 |----|--------------|
-| 1. | [What is Express.js?](#q1-what-is-express.js?)|
-| 2. | [What are middlewares?](q2-what-are-middlewares?)|
-| 3. | [Why do we need global error handler in our express app?](q3-why-do-we-need-global-error-handler-in-our-express-app?)|
-| 4. | [Where should we store db passwords and other secrets? What about configs?](q4-where-should-we-store-db-passwords-and-other-secrets?-what-about-configs?)|
-| 5. | [What are CORS errors?](q5-what-are-cors-errors?)|
-| 6. | [What are the different types of authentication? How to implement JWT auth in Express?](q6-what-are-the-different-types-of-authentication?-how-to-implement-jwt-auth-in-express?)|
-| 7. | [What alternative libraries for Express exist?](q7-what-alternative-libraries-for-express-exist?)|
+| 1. | [What is Express.js?](#q1-what-is-expressjs)|
+| 2. | [What are middlewares?](#q2-what-are-middlewares)|
+| 3. | [Why do we need global error handler in our express app?](#q3-why-do-we-need-global-error-handler-in-our-express-app)|
+| 4. | [Where should we store db passwords and other secrets? What about configs?](#q4-where-should-we-store-db-passwords-and-other-secrets?-what-about-configs)|
+| 5. | [What are CORS errors?](#q5-what-are-cors-errors)|
+| 6. | [What are the different types of authentication? How to implement JWT auth in Express?](#q6-what-are-the-different-types-of-authentication?-how-to-implement-jwt-auth-in-express)|
+| 7. | [What alternative libraries for Express exist?](#q7-what-alternative-libraries-for-express-exist)|
 
 ### Database
 
@@ -104,11 +104,11 @@ Node.js is an open-source server side runtime environment built on Chrome\'s V8 
 
 #### Q2. ***What is the Event loop and how does it work? Why should we avoid blocking the Event loop?***
 
-The [event loop](https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/) is what allows Node.js to perform non-blocking I/O operations — despite the fact that JavaScript is single-threaded — by offloading operations to the system kernel whenever possible.
+The [event loop](https://nodejs.dev/learn/the-nodejs-event-loop) is what allows Node.js to perform non-blocking I/O operations — despite the fact that JavaScript is single-threaded — by offloading operations to the system kernel whenever possible.
 
 Since most modern kernels are multi-threaded, they can handle multiple operations executing in the background. When one of these operations completes, the kernel tells Node.js so that the appropriate callback may be added to the **poll** queue to eventually be executed. We'll explain this in further detail later in this topic.
 
-The following diagram shows a simplified overview of the event loop's order of operations.
+The following diagram shows a simplified overview of the [event loop's]((https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick)) order of operations.
 
 ```
    ┌───────────────────────────┐
@@ -180,6 +180,96 @@ Event emitting business is a lot more flexible than single callbacks. You can do
 </div>
 
 #### Q5. ***Streams. Difference between readable, writeable, duplex and transform streams.***
+
+They are a way to handle reading/writing files, network communications, or any kind of end-to-end information exchange in an efficient way.
+Streams are not a concept unique to Node.js. They were introduced in the Unix operating system decades ago, and programs can interact with each other passing streams through the pipe operator (|).
+
+For example, in the traditional way, when you tell the program to read a file, the file is read into memory, from start to finish, and then you process it.
+
+Using streams you read it piece by piece, processing its content without keeping it all in memory.
+The Node.js stream module provides the foundation upon which all streaming APIs are built. All streams are instances of EventEmitter.
+
+##### Different types of streams
+
+There are four classes of streams:
+
+- `Readable`: a stream you can pipe from, but not pipe into (you can receive data, but not send data to it). When you push data into a readable stream, it is buffered, until a consumer starts to read the data.
+- `Writable`: a stream you can pipe into, but not pipe from (you can send data, but not receive from it)
+- `Duplex`: a stream you can both pipe into and pipe from, basically a combination of a Readable and Writable stream
+- `Transform`: a Transform stream is similar to a Duplex, but the output is a transform of its input
+
+##### An example of a stream
+
+A typical example is reading files from a disk.
+
+Using the Node.js `fs` module, you can read a file, and serve it over HTTP when a new connection is established to your HTTP server:
+
+```js
+JS
+const http = require('http')const fs = require('fs')
+const server = http.createServer(function(req, res) {  fs.readFile(__dirname + '/data.txt', (err, data) => {    res.end(data)  })})server.listen(3000)
+```
+
+`readFile()` reads the full contents of the file, and invokes the callback function when it's done.
+
+`res.end(data)` in the callback will return the file contents to the HTTP client.
+
+If the file is big, the operation will take quite a bit of time. Here is the same thing written using streams:
+
+```js
+JS
+const http = require('http')const fs = require('fs')
+const server = http.createServer((req, res) => {  const stream = fs.createReadStream(__dirname + '/data.txt')  stream.pipe(res)})server.listen(3000)
+```
+
+Instead of waiting until the file is fully read, we start streaming it to the HTTP client as soon as we have a chunk of data ready to be sent.
+
+##### pipe()
+
+The above example uses the line `stream.pipe(res)`: the `pipe()` method is called on the file stream.
+
+What does this code do? It takes the source, and pipes it into a destination.
+
+You call it on the source stream, so in this case, the file stream is piped to the HTTP response.
+
+The return value of the `pipe()` method is the destination stream, which is a very convenient thing that lets us chain multiple `pipe()` calls, like this:
+
+```js
+JS
+src.pipe(dest1).pipe(dest2)
+```
+
+This construct is the same as doing
+
+```js
+JS
+src.pipe(dest1)
+dest1.pipe(dest2)
+```
+
+##### Streams-powered Node.js APIs
+
+Due to their advantages, many Node.js core modules provide native stream handling capabilities, most notably:
+
+- `process.stdin` returns a stream connected to stdin
+- `process.stdout` returns a stream connected to stdout
+- `process.stderr` returns a stream connected to stderr
+- `fs.createReadStream()` creates a readable stream to a file
+- `fs.createWriteStream()` creates a writable stream to a file
+- `net.connect()` initiates a stream-based connection
+- `http.request()` returns an instance of the http.ClientRequest class, which is a writable stream
+- `zlib.createGzip()` compress data using gzip (a compression algorithm) into a stream
+- `zlib.createGunzip()` decompress a gzip stream.
+- `zlib.createDeflate()` compress data using deflate (a compression algorithm) into a stream
+- `zlib.createInflate()` decompress a deflate stream
+
+##### Why streams?
+
+Streams basically provide two major advantages over using other data handling methods:
+
+- **Memory efficiency**: you don't need to load large amounts of data in memory before you are able to process it
+- **Time efficiency**: it takes way less time to start processing data, since you can start processing as soon as you have it, rather than waiting till the whole data payload is available
+
 
 A stream is an abstract interface for working with streaming data in Node.js. The `stream` module provides an API for implementing the stream interface.
 
