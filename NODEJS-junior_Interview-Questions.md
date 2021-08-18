@@ -291,7 +291,53 @@ The `stream` module is useful for creating new types of stream instances. It is 
 
 #### Q6. ***Buffers.***
 
-*ToDo* --> Node.js is an alalala
+##### What is a buffer?
+
+A [buffer](https://nodejs.org/api/buffer.html) is an area of memory. Most JavaScript developers are much less familiar with this concept, compared to programmers using a system programming languages (like C, C++, or Go), which interact directly with memory every day.
+
+- (not available in browser's JavaScript). 
+- Buffer is mainly used to store binary data, while reading from a file or receiving packets over the network.
+
+It represents a fixed-size chunk of memory (can't be resized) allocated outside of the V8 JavaScript engine.
+
+You can think of a buffer like an array of integers, which each represent a byte of data.
+
+It is implemented by the Node.js [Buffer class](https://nodejs.org/api/buffer.html).
+
+
+
+##### Why do we need a buffer?
+
+Buffers were introduced to help developers deal with binary data, in an ecosystem that traditionally only dealt with strings rather than binaries.
+
+Buffers in Node.js are not related to the concept of buffering data. That is what happens when a stream processor receives data faster than it can digest.
+
+##### How to create a buffer
+
+A buffer is created using the [`Buffer.from()`](https://nodejs.org/api/buffer.html#buffer_buffer_from_buffer_alloc_and_buffer_allocunsafe), [`Buffer.alloc()`](https://nodejs.org/api/buffer.html#buffer_class_method_buffer_alloc_size_fill_encoding), and [`Buffer.allocUnsafe()`](https://nodejs.org/api/buffer.html#buffer_class_method_buffer_allocunsafe_size) methods.
+
+```js
+JS
+const buf = Buffer.from('Hey!')
+```
+
+- [`Buffer.from(array)`](https://nodejs.org/api/buffer.html#buffer_class_method_buffer_from_array)
+- [`Buffer.from(arrayBuffer[, byteOffset[, length\]])`](https://nodejs.org/api/buffer.html#buffer_class_method_buffer_from_arraybuffer_byteoffset_length)
+- [`Buffer.from(buffer)`](https://nodejs.org/api/buffer.html#buffer_class_method_buffer_from_buffer)
+- [`Buffer.from(string[, encoding\])`](https://nodejs.org/api/buffer.html#buffer_class_method_buffer_from_string_encoding)
+
+You can also just initialize the buffer passing the size. This creates a 1KB buffer:
+
+```js
+JS
+const buf = Buffer.alloc(1024)
+//or
+const buf = Buffer.allocUnsafe(1024)
+```
+
+While both `alloc` and `allocUnsafe` allocate a `Buffer` of the specified size in bytes, the `Buffer` created by `alloc` will be *initialized* with zeroes and the one created by `allocUnsafe` will be *uninitialized*. This means that while `allocUnsafe` would be quite fast in comparison to `alloc`, the allocated segment of memory may contain old data which could potentially be sensitive.
+
+Older data, if present in the memory, can be accessed or leaked when the `Buffer` memory is read. This is what really makes `allocUnsafe` unsafe and extra care must be taken while using it.
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -299,7 +345,9 @@ The `stream` module is useful for creating new types of stream instances. It is 
 
 #### Q7. ***Cluster module (basic information on what it is and what it is for?)***
 
-*ToDo* --> Node.js is an alalala
+A single instance of Node.js runs in a single thread. To take advantage of multi-core systems, the user will sometimes want to launch a cluster of Node.js processes to handle the load.
+
+The [cluster](https://nodejs.org/api/cluster.html) module allows easy creation of child processes that all share server ports.
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
@@ -307,7 +355,15 @@ The `stream` module is useful for creating new types of stream instances. It is 
 
 #### Q8. ***Worker threads (vs cluster)***
 
-*ToDo* --> Node.js is an alalala
+The `worker_threads` module enables the use of threads that execute JavaScript in parallel. To access it:
+
+```js
+const worker = require('worker_threads');
+```
+
+Workers (threads) are useful for performing CPU-intensive JavaScript operations. They do not help much with I/O-intensive work. The Node.js built-in asynchronous I/O operations are more efficient than Workers can be.
+
+Unlike `child_process` or `cluster`, `worker_threads` can share memory. They do so by transferring `ArrayBuffer` instances or sharing `SharedArrayBuffer` instances.
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
