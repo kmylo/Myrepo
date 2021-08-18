@@ -6,7 +6,7 @@
 
 | No |  Questions   |
 |----|--------------|
-| 0. | [What is Node.js?](#q-what-is-node.js?) |
+| 0. | [What is Node.js?](#q-what-is-nodejs) |
 | 1. | [What are the core dependencies of Node.js? (v8 + libuv)](#q1-what-are-the-core-dependencies-of-nodejs-v8--libuv)|
 | 2. | [What is the Event loop and how does it work? Why should we avoid blocking the Event loop?](#q2-what-is-the-event-loop-and-how-does-it-work-why-should-we-avoid-blocking-the-event-loop)|
 | 3. | [When to use Node.js? (Examples of servers, avoid huge CPU load)](#q3-when-to-use-nodejs-examples-of-servers-avoid-huge-cpu-load)|
