@@ -7,7 +7,7 @@
 | No |  Questions   |
 |----|--------------|
 | 0. | [What is Node.js?](q-what-is-node.js?) |
-| 1. | [What are the core dependencies of Node.js? (v8 + libuv)](q1-what-are-the-core-dependencies-of-node.js?)|
+| 1. | [What are the core dependencies of Node.js? (v8 + libuv)](#q1-what-are-the-core-dependencies-of-node.js?)|
 | 2. | [What is the Event loop and how does it work? Why should we avoid blocking the Event loop?](q2-what-is-the-event-loop-and-how-does-it-work?-why-should-we-avoid-blocking-the-event-loop?)|
 | 3. | [When to use Node.js? (Examples of servers, avoid huge CPU load)](q3-when-to-use-node.js?)|
 | 4. | [What is EventEmitter module? What are its features?](q4-what-is-eventemitter-module?-what-are-its-features?)|
@@ -21,7 +21,7 @@
 
 | No |  Questions   |
 |----|--------------|
-| 1. | [What is Express.js?](q1-what-is-express.js?)|
+| 1. | [What is Express.js?](#q1-what-is-express.js?)|
 | 2. | [What are middlewares?](q2-what-are-middlewares?)|
 | 3. | [Why do we need global error handler in our express app?](q3-why-do-we-need-global-error-handler-in-our-express-app?)|
 | 4. | [Where should we store db passwords and other secrets? What about configs?](q4-where-should-we-store-db-passwords-and-other-secrets?-what-about-configs?)|
@@ -33,7 +33,7 @@
 
 | No |  Questions   |
 |----|--------------|
-| 1. | [Questions about DB that interviewee used in this course (overall information, simple operations, indexes)](q1-questions-about-db-that-interviewee-used-in-this-course)|
+| 1. | [Questions about DB that interviewee used in this course (overall information, simple operations, indexes)](#q1-questions-about-db-that-interviewee-used-in-this-course)|
 | 2. | [How would you explain the recent rise of NoSQL’s popularity?](q2-how-would-you-explain-the-recent-rise-of-nosql’s-popularity?)|
 | 3. | [When would you use a document database like MongoDB instead of a relational database like MySQL or PostgreSQL?](q3-when-would-you-use-a-document-database-like-mongodb-instead-of-a-relational-database-like-mysql-or-postgresql?)|
 | 4. | [How would you find the most expensive queries in an application?](q4-how-would-you-find-the-most-expensive-queries-in-an-application?)|
@@ -42,7 +42,7 @@
 
 | No |  Questions   |
 |----|--------------|
-| 1. | [What is WebSocket? When should we use it?](q1-what-is-websocket?-when-should-we-use-it?)|
+| 1. | [What is WebSocket? When should we use it?](#q1-what-is-websocket?-when-should-we-use-it?)|
 | 2. | [Socket.io: What happens if client/server does not support websocket transport type?](q2-socket.io:-what-happens-if-client/server-does-not-support-websocket-transport-type?)|
 | 3. | [Alternative libraries](q3-alternative-libraries)|
 
