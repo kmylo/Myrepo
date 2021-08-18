@@ -6,16 +6,16 @@
 
 | No |  Questions   |
 |----|--------------|
-| 0. | [What is Node.js?](q-what-is-node.js?) |
-| 1. | [What are the core dependencies of Node.js? (v8 + libuv)](#q1-what-are-the-core-dependencies-of-node.js?)|
-| 2. | [What is the Event loop and how does it work? Why should we avoid blocking the Event loop?](q2-what-is-the-event-loop-and-how-does-it-work?-why-should-we-avoid-blocking-the-event-loop?)|
-| 3. | [When to use Node.js? (Examples of servers, avoid huge CPU load)](q3-when-to-use-node.js?)|
-| 4. | [What is EventEmitter module? What are its features?](q4-what-is-eventemitter-module?-what-are-its-features?)|
-| 5. | [Streams. Difference between readable, writeable, duplex and transform streams.](q5-streams.-difference-between-readable,-writeable,-duplex-and-transform-streams.)|
-| 6. | [Buffers](q6-buffers)|
-| 7. | [Cluster module (basic information on what it is and what it is for?)](q7-cluster-module)|
-| 8. | [Worker threads (vs cluster)](q8-worker-threads)|
-| 9. | [What is npm? What are package.json and package-lock.json for?](q9-what-is-npm?-what-are-package.json-and-package-lock.json-for?)|
+| 0. | [What is Node.js?](#q-what-is-node.js?) |
+| 1. | [What are the core dependencies of Node.js? (v8 + libuv)](#q1-what-are-the-core-dependencies-of-nodejs-v8--libuv)|
+| 2. | [What is the Event loop and how does it work? Why should we avoid blocking the Event loop?](#q2-what-is-the-event-loop-and-how-does-it-work-why-should-we-avoid-blocking-the-event-loop)|
+| 3. | [When to use Node.js? (Examples of servers, avoid huge CPU load)](#q3-when-to-use-nodejs-examples-of-servers-avoid-huge-cpu-load)|
+| 4. | [What is EventEmitter module? What are its features?](#q4-what-is-eventemitter-module-what-are-its-features)|
+| 5. | [Streams. Difference between readable, writeable, duplex and transform streams.](#q5-streams-difference-between-readable-writeable-duplex-and-transform-streams)|
+| 6. | [Buffers](#q6-buffers)|
+| 7. | [Cluster module (basic information on what it is and what it is for?)](#q7-cluster-module-basic-information-on-what-it-is-and-what-it-is-for)|
+| 8. | [Worker threads (vs cluster)](#q8-worker-threads-vs-cluster)|
+| 9. | [What is npm? What are package.json and package-lock.json for?](#q9-what-is-npm-what-are-packagejson-and-package-lockjson-for)|
 
 ### Express
 
