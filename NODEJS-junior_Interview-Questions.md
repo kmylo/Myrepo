@@ -62,6 +62,7 @@
 * Cluster module
 * Worker threads
 * NPM
+* REPL (read-evaluate-print-loop
 
 ---
 
