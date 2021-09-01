@@ -94,7 +94,7 @@ Node.js is an open-source server side runtime environment built on Chrome\'s V8 
   - [zlib](https://nodejs.org/en/docs/meta/topics/dependencies/#zlib) 
   fast sync and streaming compresion and decompresion interfaces
 - Tools
-  - [npm](https://nodejs.org/en/docs/meta/topics/dependencies/#npm)
+  - [npm](https://nodejs.org/en/docs/meta/topics/dependencies/#npm) package manager
   - [gyp](https://nodejs.org/en/docs/meta/topics/dependencies/#gyp) is a tool which compiles Node.js Addons. Node.js Addons are native Node.js Modules, written in C or C++, which therefore need to be compiled on your machine. After they are compiled with tools like node-gyp, their functionality can be accessed via require(), just as any other Node.js Module.
   - [gtest](https://nodejs.org/en/docs/meta/topics/dependencies/#gtest)
   Native code can be tested , allows testing C/C++
