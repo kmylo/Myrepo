@@ -172,6 +172,7 @@ This object exposes, among many others, the `on` and `emit` methods.
 - `on` is used to add a callback function that's going to be executed when the event is triggered
 
 | Tables        | Are           |
+|----|-------|-------|
 | **Callback**:| Use a callback if you just want to execute some code at a certain time and you don't need to emit success or failure. |
 | **EventEmitter**:| Use this if your object emits lots of types of events.|
 
