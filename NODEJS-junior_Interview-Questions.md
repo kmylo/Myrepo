@@ -176,7 +176,7 @@ This object exposes, among many others, the `on` and `emit` methods.
 | **Callback**:     | Use a callback if you just want to execute some code at a certain time and you don't need to emit success or failure. |
 | **EventEmitter**: | Use this if your object emits lots of types of events.                                                                |
 
-Event emitting business is a lot more flexible than single callbacks. You can do this _.on_ operation multiple times. This gives you the flexibility of defining different behaviors in different functions in response to a single event.
+>  Event emitting business is a lot more flexible than single callbacks. You can do this _.on_ operation multiple times. This gives you the flexibility of defining different behaviors in different functions in response to a single event.
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
